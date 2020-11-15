@@ -8,7 +8,7 @@ namespace Test
     {
         [TestMethod]
         [Description("Should Money create to new Money with amount and USD currency.")]
-        public void Money_Case_newObject()
+        public void Money_Case_newValueObject()
         {
             decimal amount = 2_500m;
             string currency = Currency.USD;

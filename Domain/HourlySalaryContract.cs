@@ -1,6 +1,8 @@
-﻿namespace Entities
+﻿using Entities;
+
+namespace Domain
 {
-    public class HourlySalaryContract
+    public class HourlySalaryContract: ISalaryContract
     {
         public HourlySalaryContract(Money salary)
         {

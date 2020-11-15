@@ -1,4 +1,5 @@
-﻿using Entities;
+﻿using Domain;
+using Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Test
@@ -7,7 +8,7 @@ namespace Test
     public class HourlySalaryContractTest
     {
         [TestMethod]
-        [Description("Should HourlySalary return TypeContract HourlySalary")]
+        [Description("Should HourlySalaryContract return TypeContract HourlySalary")]
         public void HourlySalary_Case_TypeContract()
         {
             string typeContract = TypeContract.HourlySalary;
