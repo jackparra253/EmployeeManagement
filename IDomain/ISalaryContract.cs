@@ -1,6 +1,6 @@
 ﻿using Entities;
 
-namespace Domain
+namespace IDomain
 {
     public interface ISalaryContract
     {
