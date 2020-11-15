@@ -16,7 +16,8 @@
 
         public Money CalculatedAnnualSalary()
         {
-            AnnualSalary = new Money(120 * Salary.Amount * 12, Salary.Currency);
+            decimal operationsToCalculateAnnualSalary = 120 * Salary.Amount * 12;
+            AnnualSalary = new Money(operationsToCalculateAnnualSalary , Salary.Currency);
             return AnnualSalary;
         }
     }
