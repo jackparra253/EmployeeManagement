@@ -26,30 +26,29 @@ namespace Data
                 employee.OwnsOne(e => e.Salary)
                     .Property(e => e.Amount)
                     .HasColumnType("decimal(5, 2)")
-                    .HasColumnName("MoneyAmount")
+                    .HasColumnName("SalaryAmount")
                     .IsRequired();
 
                 employee.OwnsOne(e => e.Salary)
                     .Property(e => e.Currency)
                     .HasColumnType("varchar(3)")
                     .HasMaxLength(3)
-                    .HasColumnName("MoneyCurrency")
+                    .HasColumnName("SalaryCurrency")
                     .IsRequired();
 
                 employee.OwnsOne(e => e.AnnualSalary)
                     .Property(e => e.Amount)
                     .HasColumnType("decimal(5, 2)")
-                    .HasColumnName("MoneyAmount")
+                    .HasColumnName("AnnualSalaryAmount")
                     .IsRequired();
 
                 employee.OwnsOne(e => e.AnnualSalary)
                     .Property(e => e.Currency)
                     .HasColumnType("varchar(3)")
                     .HasMaxLength(3)
-                    .HasColumnName("MoneyCurrency")
+                    .HasColumnName("AnnualSalaryCurrency")
                     .IsRequired();
             });
         }
-
     }
 }
