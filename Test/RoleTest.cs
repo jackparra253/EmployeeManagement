@@ -8,7 +8,7 @@ namespace Test
     {
         [TestMethod]
         [Description("Should Role create to new instance role")]
-        public void TestMethod1()
+        public void Role_Case_NewObject()
         {
             string name = "Developer";
             string description = "Developer back end";
