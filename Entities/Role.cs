@@ -1,4 +1,4 @@
-﻿namespace Test
+﻿namespace Entities
 {
     public class Role
     {

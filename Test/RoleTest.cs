@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Test

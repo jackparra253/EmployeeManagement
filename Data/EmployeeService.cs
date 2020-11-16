@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using Entities;
+using IData;
 
 namespace Data
 {
-    public class EmployeeService
+    public class EmployeeService : IEmployeeService
     {
         private readonly EmployeeContext _employeeContext;
 
