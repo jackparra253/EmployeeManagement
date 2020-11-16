@@ -9,12 +9,13 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace TestApplication
 {
     [TestClass]
-    public class EmployeeHourlySalaryTest: TestBase
+    public class EmployeeMonthlySalaryTest: TestBase
     {
         private EmployeeContext _employeeContext;
-        private EmployeeHourlySalary _employeeHourlySalary;
 
-        public EmployeeHourlySalaryTest()
+        private EmployeeMonthlySalary _employeeMonthlySalary;
+
+        public EmployeeMonthlySalaryTest()
         {
             UseSqlite();
         }
@@ -26,21 +27,20 @@ namespace TestApplication
 
             IEmployeeService employeeService = new EmployeeService(_employeeContext);
 
-            _employeeHourlySalary = new EmployeeHourlySalary(employeeService);
+            _employeeMonthlySalary = new EmployeeMonthlySalary(employeeService);
         }
 
-
         [TestMethod]
-        [Description("Should Create Save Employee type Hourly Salary Contract")]
+        [Description("Should Create Save Employee type Monthly Salary Contract")]
         public void EmployeeHourlySalary()
         {
             var requestEmployee =
-                new RequestEmployee("Martin", "Fowler", 3, 1_000m);
+                new RequestEmployee("Martin", "Fowler", 3, 2_000m);
 
-            _employeeHourlySalary.Create(requestEmployee);
+            _employeeMonthlySalary.Create(requestEmployee);
             var employess = _employeeContext.Employees.FirstOrDefault();
 
-            Assert.AreEqual(new Money(1_440_000M, Currency.USD), employess.AnnualSalary );
+            Assert.AreEqual(new Money(24_000M, Currency.USD), employess.AnnualSalary);
         }
     }
 }

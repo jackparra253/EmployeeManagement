@@ -5,7 +5,7 @@ using IData;
 
 namespace Application
 {
-    public class EmployeeHourlySalary
+    public class EmployeeHourlySalary:  EmployeeSalary
     {
         private readonly IEmployeeService _employeeService;
 
@@ -14,9 +14,11 @@ namespace Application
             _employeeService = employeeService;
         }
 
-        public void Create(RequestEmployeeHourlySalary requestEmployeeHourlySalary)
+        public override void Create(RequestEmployee requestEmployee)
         {
-            var hourlySalaryContract = new HourlySalaryContract(new Money( requestEmployeeHourlySalary.Amount, Currency.USD));
+            var requestEmployeeHourlySalary = new RequestEmployeeHourlySalary(requestEmployee.Name, requestEmployee.LastName, requestEmployee.IdRole,requestEmployee.Amount); 
+
+            var hourlySalaryContract = new HourlySalaryContract(new Money(requestEmployeeHourlySalary.Amount, Currency.USD));
 
             Employee employee = new Employee(requestEmployeeHourlySalary.Name, requestEmployeeHourlySalary.LastName, hourlySalaryContract.TypeContract, hourlySalaryContract.Salary, hourlySalaryContract.AnnualSalary, requestEmployeeHourlySalary.IdRole);
 
