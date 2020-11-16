@@ -1,4 +1,6 @@
-﻿using Entities;
+﻿using System;
+using System.Linq;
+using Entities;
 
 namespace Data
 {
@@ -15,6 +17,17 @@ namespace Data
         {
             _employeeContext.Add(employee);
             _employeeContext.SaveChanges();
+        }
+
+        public Employee Get(int id)
+        {
+            Employee employee = _employeeContext.Employees.Where(employee => employee.EmployeeId == id)
+                .FirstOrDefault();
+
+            if (employee is null)
+                throw new Exception($"Employee with id {id} not exist.");
+
+            return employee;
         }
     }
 }
