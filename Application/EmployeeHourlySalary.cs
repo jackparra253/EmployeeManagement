@@ -16,9 +16,11 @@ namespace Application
 
         public override void Create(RequestEmployee requestEmployee)
         {
-            var requestEmployeeHourlySalary = new RequestEmployeeHourlySalary(requestEmployee.Name, requestEmployee.LastName, requestEmployee.IdRole,requestEmployee.Amount); 
+            var requestEmployeeHourlySalary = new RequestEmployeeHourlySalary(requestEmployee);
 
-            var hourlySalaryContract = new HourlySalaryContract(new Money(requestEmployeeHourlySalary.Amount, Currency.USD));
+            var salary = new Money(requestEmployeeHourlySalary.Amount, Currency.USD);
+
+            var hourlySalaryContract = new HourlySalaryContract(salary);
 
             Employee employee = new Employee(requestEmployeeHourlySalary.Name, requestEmployeeHourlySalary.LastName, hourlySalaryContract.TypeContract, hourlySalaryContract.Salary, hourlySalaryContract.AnnualSalary, requestEmployeeHourlySalary.IdRole);
 

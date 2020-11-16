@@ -8,12 +8,12 @@
         public decimal Amount { get; private set; }
         public string MonthlySalary { get; private set; }
 
-        public RequestEmployeeMonthlySalary(string name, string lastName, int idRole, decimal amount) : base(name, lastName, idRole, amount)
+        public RequestEmployeeMonthlySalary(RequestEmployee requestEmployee) : base(requestEmployee.Name, requestEmployee.LastName, requestEmployee.IdRole, requestEmployee.Amount)
         {
-            Name = name;
-            LastName = lastName;
-            IdRole = idRole;
-            Amount = amount;
+            Name = requestEmployee.Name;
+            LastName = requestEmployee.LastName;
+            IdRole = requestEmployee.IdRole;
+            Amount = requestEmployee.Amount;
             MonthlySalary = TypeContract.MonthlySalary;
         }
     }

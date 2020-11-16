@@ -32,15 +32,16 @@ namespace TestApplication
 
         [TestMethod]
         [Description("Should Create Save Employee type Monthly Salary Contract")]
-        public void EmployeeHourlySalary()
+        public void EmployeeMonthlySalary_Case_Create()
         {
             var requestEmployee =
                 new RequestEmployee("Martin", "Fowler", 3, 2_000m);
 
             _employeeMonthlySalary.Create(requestEmployee);
-            var employess = _employeeContext.Employees.FirstOrDefault();
+            var employee = _employeeContext.Employees.FirstOrDefault();
 
-            Assert.AreEqual(new Money(24_000M, Currency.USD), employess.AnnualSalary);
+            Assert.AreEqual(new Money(24_000M, Currency.USD), employee.AnnualSalary);
+            Assert.AreEqual(TypeContract.MonthlySalary, employee.TypeContract);
         }
     }
 }

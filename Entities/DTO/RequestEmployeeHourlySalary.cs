@@ -9,12 +9,12 @@
         public decimal Amount { get; private set; }
         public string HourlySalary { get; private set; }
 
-        public RequestEmployeeHourlySalary(string name, string lastName, in int idRole, decimal amount): base(name, lastName, idRole, amount)
+        public RequestEmployeeHourlySalary(RequestEmployee requestEmployee): base(requestEmployee.Name, requestEmployee.LastName, requestEmployee.IdRole, requestEmployee.Amount)
         {
-            Name = name;
-            LastName = lastName;
-            IdRole = idRole;
-            Amount = amount;
+            Name = requestEmployee.Name;
+            LastName = requestEmployee.LastName;
+            IdRole = requestEmployee.IdRole;
+            Amount = requestEmployee.Amount;
             HourlySalary = TypeContract.HourlySalary;
         }
     }
