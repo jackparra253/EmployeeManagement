@@ -31,11 +31,7 @@ namespace Test
         [Description("Should Save add and save to Employee")]
         public void EmployeeService_Case_Save()
         {
-            string name = "Alan";
-            string lastName = "Turing";
-            var salary = new Money(5_000m, Currency.USD);
-            var salaryContract = new MonthlySalaryContract(salary);
-            var alanTuring = new Employee(name, lastName, salaryContract.TypeContract, salary, salaryContract.AnnualSalary, 2);
+            var alanTuring = new Employee("Alan", "Turing", TypeContract.MonthlySalary, new Money(5_000m, Currency.USD), new Money(60_000m, Currency.USD), 2);
 
             _employeeService.Save(alanTuring);
             Employee employee = _employeeContext.Employees.FirstOrDefault();
@@ -49,16 +45,10 @@ namespace Test
         [Description("Should Get return Employee to Id")]
         public void EmployeeService_Case_Get()
         {
-            string name = "Alan";
-            string lastName = "Turing";
-            var salary = new Money(5_000m, Currency.USD);
-            var salaryContract = new MonthlySalaryContract(salary);
-            var alanTuring = new Employee(name, lastName, salaryContract.TypeContract, salary, salaryContract.AnnualSalary, 2);
+            var alanTuring = new Employee("Alan", "Turing", TypeContract.MonthlySalary, new Money(5_000m, Currency.USD), new Money(60_000m, Currency.USD), 2);
 
             _employeeService.Save(alanTuring);
-            int id = 1;
-            Employee employee = _employeeService.Get(id);
-
+            Employee employee = _employeeService.Get(1);
 
             Assert.AreEqual(alanTuring.Name, employee.Name);
             Assert.AreEqual(alanTuring.AnnualSalary, employee.AnnualSalary);
@@ -75,5 +65,37 @@ namespace Test
             Assert.AreEqual(messageExpect, message);
         }
 
+        [TestMethod]
+        [Description("Should GetAll return all Employees")]
+        public void EmployeeService_Case_GetAll()
+        {
+            List<Employee> expected = CreateEmployeesInMemory();
+
+            List<Employee> employees = _employeeService.GetAll();
+
+            Assert.AreEqual(expected.Count, employees.Count);
+        }
+
+        private List<Employee> CreateEmployeesInMemory()
+        {
+            var alanTuring = new Employee("Alan", "Turing", TypeContract.MonthlySalary, new Money(5_000m, Currency.USD), new Money(60_000m, Currency.USD), 2);
+            var uncleBob = new Employee("Alan", "Turing", TypeContract.MonthlySalary, new Money(4_000m, Currency.USD), new Money(48_000m, Currency.USD), 2);
+
+            var employees = new List<Employee> { alanTuring, uncleBob };
+
+            _employeeContext.AddRange(employees);
+            _employeeContext.SaveChanges();
+
+            return employees;
+        }
+
+        [TestMethod]
+        [Description("Should GetAll return list empty when not exists Employees")]
+        public void EmployeeService_Case_GetAll_ListEmpty()
+        {
+            List<Employee> employees = _employeeService.GetAll();
+
+            Assert.AreEqual(0, employees.Count);
+        }
     }
 }

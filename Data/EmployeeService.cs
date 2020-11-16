@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Entities;
 
@@ -28,6 +29,11 @@ namespace Data
                 throw new Exception($"Employee with id {id} not exist.");
 
             return employee;
+        }
+
+        public List<Employee> GetAll()
+        {
+            return _employeeContext.Employees.ToList();
         }
     }
 }
