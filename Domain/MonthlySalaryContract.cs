@@ -1,12 +1,13 @@
 ﻿using Entities;
+using Entities.ValueObject;
 
 namespace Domain
 {
-    public class MonthlySalaryContract : ISalaryContract
+    public class MonthlySalaryContract : SalaryContract
     {
         public MonthlySalaryContract(Money salary)
         {
-            TypeContract = Entities.TypeContract.MonthlySalary;
+            TypeContract = Entities.Constant.TypeContract.MonthlySalary;
             Salary = salary;
             AnnualSalary = CalculatedAnnualSalary();
         }
@@ -15,7 +16,7 @@ namespace Domain
         public Money Salary { get; private set; }
         public Money AnnualSalary { get; private set; }
 
-        public Money CalculatedAnnualSalary()
+        public override Money CalculatedAnnualSalary()
         {
             decimal operationsToCalculateAnnualSalary = Salary.Amount * 12;
             AnnualSalary = new Money(operationsToCalculateAnnualSalary, Salary.Currency);

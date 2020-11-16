@@ -1,7 +1,9 @@
 ﻿using Entities;
+using Entities.Constant;
+using Entities.ValueObject;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Test
+namespace Test.UnitTest
 {
     [TestClass]
     public class MoneyTest

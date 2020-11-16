@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Entities.ValueObject;
 using Microsoft.EntityFrameworkCore;
 
 namespace Data

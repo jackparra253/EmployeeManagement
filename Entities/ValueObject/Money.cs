@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Entities
+namespace Entities.ValueObject
 {
     public class Money: ValueObject
     {

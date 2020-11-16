@@ -1,7 +1,7 @@
 ﻿using Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Test
+namespace Test.UnitTest
 {
     [TestClass]
     public class RoleTest

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Entities;
+using Entities.ValueObject;
 
 namespace IData
 {

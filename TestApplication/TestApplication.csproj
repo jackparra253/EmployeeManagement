@@ -19,7 +19,6 @@
     <ProjectReference Include="..\Domain\Domain.csproj" />
     <ProjectReference Include="..\Entities\Entities.csproj" />
     <ProjectReference Include="..\IData\IData.csproj" />
-    <ProjectReference Include="..\IDomain\IDomain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,6 @@
-﻿namespace Entities.DTO
+﻿using Entities.Constant;
+
+namespace Entities.DTO
 {
     public class RequestEmployeeMonthlySalary: RequestEmployee
     {

@@ -1,3 +1,5 @@
+using Entities.ValueObject;
+
 namespace Entities
 {
     public class Employee
