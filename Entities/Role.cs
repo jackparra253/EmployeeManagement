@@ -2,8 +2,9 @@
 {
     public class Role
     {
-        public Role(string name, string description)
+        public Role(int id, string name, string description)
         {
+            Id = id;
             Name = name;
             Description = description;
         }
