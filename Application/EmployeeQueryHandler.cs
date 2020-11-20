@@ -41,5 +41,27 @@ namespace Application
                     employeeWithDetail?.Name ?? string.Empty,
                     employeeWithDetail?.Description ?? string.Empty)).ToList();
         }
+
+        public EmployeeDetail GetById(int idEmployee)
+        {
+            Employee employee = _employeeService.GetById(idEmployee);
+
+            Role role = _roleService.Get(employee.IdRole);
+
+            return GetEmployeeDetail(employee, role);
+        }
+
+        private EmployeeDetail GetEmployeeDetail(Employee employee, Role role)
+        {
+            return new EmployeeDetail(
+                employee.EmployeeId,
+                employee.Name,
+                employee.LastName,
+                employee.TypeContract,
+                employee.Salary,
+                employee.AnnualSalary,
+                role?.Name ?? string.Empty,
+                role?.Description ?? string.Empty);
+        }
     }
 }

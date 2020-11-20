@@ -6,5 +6,6 @@ namespace IData
     public interface IRoleServiceFake
     {
         List<Role> GetAll();
+        Role Get(int idRole);
     }
 }

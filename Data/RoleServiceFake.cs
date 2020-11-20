@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Entities;
 using IData;
 
@@ -18,6 +19,11 @@ namespace Data
         public List<Role> GetAll()
         {
             return _roles;
+        }
+
+        public Role Get(int idRole)
+        {
+            return _roles.Where(role => role.Id == idRole).FirstOrDefault();
         }
     }
 }

@@ -44,6 +44,31 @@ namespace Test.FuntionalTest
             AssertEmployeesDetails(expected, employeeDetails);
         }
 
+        [TestMethod]
+        public void EmployeeQueryHandler_Case_GetById()
+        {
+            CreateEmployeesInMemory();
+            EmployeeDetail expected = new EmployeeDetail(2,
+                "Jack",
+                "Parra Murillo",
+                TypeContract.MonthlySalary,
+                new Money(15_000m, Currency.USD),
+                new Money(180_000m, Currency.USD),
+                "Software developer",
+                "a person who writes computer programs");
+
+            EmployeeDetail employeeDetail = _employeeQueryHandler.GetById(2);
+
+            Assert.AreEqual(expected.Name, employeeDetail.Name);
+            Assert.AreEqual(expected.LastName, employeeDetail.LastName);
+            Assert.AreEqual(expected.RoleName, employeeDetail.RoleName);
+            Assert.AreEqual(expected.RoleDescriptrion, employeeDetail.RoleDescriptrion);
+            Assert.AreEqual(expected.Salary, employeeDetail.Salary);
+            Assert.AreEqual(expected.AnnualSalary, employeeDetail.AnnualSalary);
+            Assert.AreEqual(expected.TypeContract, employeeDetail.TypeContract);
+        }
+
+
         private List<EmployeeDetail> CreateEmployeesDetail()
         {
             return new List<EmployeeDetail>
@@ -104,7 +129,5 @@ namespace Test.FuntionalTest
             _employeeContext.AddRange(employees);
             _employeeContext.SaveChanges();
         }
-
-        
     }
 }

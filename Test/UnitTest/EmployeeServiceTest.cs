@@ -48,7 +48,7 @@ namespace Test.UnitTest
             var alanTuring = new Employee("Alan", "Turing", TypeContract.MonthlySalary, new Money(5_000m, Currency.USD), new Money(60_000m, Currency.USD), 2);
 
             _employeeService.Save(alanTuring);
-            Employee employee = _employeeService.Get(1);
+            Employee employee = _employeeService.GetById(1);
 
             Assert.AreEqual(alanTuring.Name, employee.Name);
             Assert.AreEqual(alanTuring.AnnualSalary, employee.AnnualSalary);
@@ -60,7 +60,7 @@ namespace Test.UnitTest
         {
             string messageExpect = "Employee with id 2 not exist.";
 
-            string  message = Assert.ThrowsException<Exception>(() => _employeeService.Get(2)).Message;
+            string  message = Assert.ThrowsException<Exception>(() => _employeeService.GetById(2)).Message;
 
             Assert.AreEqual(messageExpect, message);
         }

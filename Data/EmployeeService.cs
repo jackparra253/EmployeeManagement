@@ -22,7 +22,7 @@ namespace Data
             _employeeContext.SaveChanges();
         }
 
-        public Employee Get(int id)
+        public Employee GetById(int id)
         {
             Employee employee = _employeeContext.Employees.Where(employee => employee.EmployeeId == id)
                 .FirstOrDefault();

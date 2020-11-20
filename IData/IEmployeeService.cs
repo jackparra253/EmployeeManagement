@@ -7,7 +7,7 @@ namespace IData
     public interface IEmployeeService
     {
         void Save(Employee employee);
-        Employee Get(int id);
+        Employee GetById(int id);
         List<Employee> GetAll();
     }
 }
