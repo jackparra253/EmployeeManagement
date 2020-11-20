@@ -23,7 +23,12 @@ namespace Application
 
             List<Employee> employees = _employeeService.GetAll();
 
-            List<EmployeeDetail> employeeDetails = (from employee in employees
+            return GetEmployeeDetails(employees, roles);
+        }
+
+        private List<EmployeeDetail> GetEmployeeDetails(List<Employee> employees, List<Role> roles)
+        {
+            return (from employee in employees
                 join role in roles on employee.IdRole equals role.Id into ed
                 from employeeWithDetail in ed.DefaultIfEmpty()
                 select new EmployeeDetail(
@@ -35,8 +40,6 @@ namespace Application
                     employee.AnnualSalary,
                     employeeWithDetail?.Name ?? string.Empty,
                     employeeWithDetail?.Description ?? string.Empty)).ToList();
-
-            return employeeDetails;
         }
     }
 }
