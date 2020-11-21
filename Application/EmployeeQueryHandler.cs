@@ -2,11 +2,12 @@
 using System.Linq;
 using Entities;
 using Entities.DTO;
+using IApplication;
 using IData;
 
 namespace Application
 {
-    public class EmployeeQueryHandler
+    public class EmployeeQueryHandler : IEmployeeQueryHandler
     {
         private IEmployeeService _employeeService;
         private IRoleServiceFake _roleService;

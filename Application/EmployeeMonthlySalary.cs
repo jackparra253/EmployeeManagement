@@ -1,14 +1,14 @@
-﻿using System;
-using Domain;
+﻿using Domain;
 using Entities;
 using Entities.Constant;
 using Entities.DTO;
 using Entities.ValueObject;
+using IApplication;
 using IData;
 
 namespace Application
 {
-    public class EmployeeMonthlySalary: EmployeeSalary
+    public class EmployeeMonthlySalary: EmployeeSalary, IEmployeeMonthlySalary
     {
         private IEmployeeService _employeeService;
 

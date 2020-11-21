@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\IApplication\IApplication.csproj" />
     <ProjectReference Include="..\IData\IData.csproj" />
   </ItemGroup>
 

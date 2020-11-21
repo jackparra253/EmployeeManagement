@@ -3,11 +3,12 @@ using Entities;
 using Entities.Constant;
 using Entities.DTO;
 using Entities.ValueObject;
+using IApplication;
 using IData;
 
 namespace Application
 {
-    public class EmployeeHourlySalary:  EmployeeSalary
+    public class EmployeeHourlySalary:  EmployeeSalary, IEmployeeHourlySalary
     {
         private readonly IEmployeeService _employeeService;
 
