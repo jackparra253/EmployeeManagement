@@ -28,7 +28,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        [Route("{id/employee}")]
+        [Route("{id}/employee")]
         public EmployeeDetail Get(int id)
         {
             return _employeeQueryHandler.GetById(id);

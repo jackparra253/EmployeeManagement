@@ -10,28 +10,85 @@
     <title>Employee Management</title>
 </head>
 <body>
-<!-- inicio header -->
+    <!-- inicio header -->
     <div class="page-header" style="text-align: center;
                                      background: #343a40; color:white">
         <h1>Employee Management </h1>
     </div>
     <!-- fin header -->
 
-    <h1>Jack</h1>
+    <div class="container-sm">
+        <div class="row">
+            <div class="col-sm">
+                <h4>Get employees</h4>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label for="idEmployee">Id Employee</label>
+                        <input type="number" class="form-control form-control-sm" id="idEmployee" min="1">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-dark btn-sm" onclick="save()">Get Employees</button>
+            </div>
+        </div>
+        
+        <br />
 
-    <script src="js/site.js" asp-append-version="true"></script>
-<script type="text/javascript">
-        getExternalEmployees();
-    </script>
+        <!-- Begin employeee -->
+                <div class="row">
+                    <div class="col-sm">
+                        <h4>Create employee</h4>
+                        <form action="#">
+                            <div class="form-row">
+                                <div class="form-group col-md-2">
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control form-control-sm" id="name">
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="lastName">Last Name</label>
+                                    <input type="text" class="form-control form-control-sm" id="lastName">
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="role">Role</label>
+                                    <select id="role" class="form-control form-control-sm">
+                                        <option value="1">Administrator</option>
+                                        <option value="2">Contractor</option>
+                                        <option value="3">Software developer</option>
+                                        <option value="4">Video game developer</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="amount">Amount</label>
+                                    <input type="number" type="number" class="form-control form-control-sm" id="amount" min="1">
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="role">Role</label>
+                                    <select id="role" class="form-control form-control-sm">
+                                        <option value="1">Hourly Salary</option>
+                                        <option value="2">Monthly Salary</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-dark btn-sm" onclick="save()">Save</button>
+                        </form>
+                    </div>
+                </div><br>
+                <!-- end -->
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-            crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-            crossorigin="anonymous"></script>
+
+            </div>
+
+            <script src="js/site.js" asp-append-version="true"></script>
+            <script type="text/javascript">
+            </script>
+
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+                    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+                    crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+                    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+                    crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+                    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+                    crossorigin="anonymous"></script>
 </body>
 </html>

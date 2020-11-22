@@ -18,6 +18,5 @@ namespace Application
         {
             return _roleService.GetAll();
         }
-
     }
 }
