@@ -32,6 +32,7 @@ namespace API
             services.AddScoped<IEmployeeMonthlySalary, EmployeeMonthlySalary>();
             services.AddScoped<IEmployeeQueryHandler, EmployeeQueryHandler>();
             services.AddScoped<IEmployeeExternalQueryHandler, EmployeeExternalQueryHandler>();
+            services.AddScoped<IRoleQueryHandler, RoleQueryHandler>();
 
             //Data
             services.AddScoped<IEmployeeService, EmployeeService>();
