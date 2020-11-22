@@ -18,7 +18,7 @@ namespace Application
             _roleService = roleService;
         }
 
-        public List<EmployeeDetail> Get()
+        public List<EmployeeDetail> GetAll()
         {
             List<Role> roles = _roleService.GetAll();
 

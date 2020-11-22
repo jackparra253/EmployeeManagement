@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Entities.DTO;
-using IData;
+using IApplication;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -9,17 +9,17 @@ namespace API.Controllers
     [ApiController]
     public class EmployeeExternalController : ControllerBase
     {
-        private readonly IEmployeeExternalService _employeeExternalService;
+        private readonly IEmployeeExternalQueryHandler _employeeExternalQueryHandler;
 
-        public EmployeeExternalController(IEmployeeExternalService employeeExternalService)
+        public EmployeeExternalController(IEmployeeExternalQueryHandler employeeExternalQueryHandler)
         {
-            _employeeExternalService = employeeExternalService;
+            _employeeExternalQueryHandler = employeeExternalQueryHandler;
         }
 
         [HttpGet]
         public List<EmployeeExternal> GetList()
         {
-            return _employeeExternalService.GetAll();
+            return _employeeExternalQueryHandler.GetAll();
         }
     }
 }

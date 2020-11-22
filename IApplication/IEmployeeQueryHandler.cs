@@ -5,7 +5,7 @@ namespace IApplication
 {
     public interface IEmployeeQueryHandler
     {
-        List<EmployeeDetail> Get();
+        List<EmployeeDetail> GetAll();
         EmployeeDetail GetById(int idEmployee);
     }
 }

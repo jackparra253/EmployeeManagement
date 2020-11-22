@@ -39,7 +39,7 @@ namespace Test.FuntionalTest
             CreateEmployeesInMemory();
             List<EmployeeDetail> expected = CreateEmployeesDetail();
 
-            List<EmployeeDetail> employeeDetails = _employeeQueryHandler.Get();
+            List<EmployeeDetail> employeeDetails = _employeeQueryHandler.GetAll();
 
             AssertEmployeesDetails(expected, employeeDetails);
         }
