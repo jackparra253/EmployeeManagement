@@ -35,13 +35,15 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public void SaveEmployeeHourlySalary(RequestEmployeeHourlySalary requestEmployeeHourlySalary)
+        [Route("HourlySalary")]
+        public void SaveEmployeeHourlySalary(RequestEmployee requestEmployeeHourlySalary)
         {
             _employeeHourlySalary.Create(requestEmployeeHourlySalary);
         }
 
         [HttpPost]
-        public void Save(RequestEmployeeMonthlySalary requestEmployeeMonthlySalary)
+        [Route("MonthlySalary")]
+        public void Save(RequestEmployee requestEmployeeMonthlySalary)
         {
             _employeeMonthlySalary.Create(requestEmployeeMonthlySalary);
         }

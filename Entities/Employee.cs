@@ -24,9 +24,4 @@ namespace Entities
         public Money AnnualSalary { get; private set; }
         public int IdRole { get; private set; }
     }
-
-    public interface ISalaryContract
-    {
-        Money CalculatedAnnualSalary();
-    }
 }
