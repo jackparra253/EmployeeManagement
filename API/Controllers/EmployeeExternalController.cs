@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Entities.DTO;
 using IApplication;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,21 @@ namespace API.Controllers
         public List<EmployeeDetail> Get()
         {
             return _employeeExternalQueryHandler.GetAll();
+        }
+
+
+        [HttpGet]
+        [Route("{id}/employee")]
+        public ActionResult<EmployeeDetail> Get(int id)
+        {
+            try
+            {
+                return Ok(_employeeExternalQueryHandler.GetById(id));
+            }
+            catch (Exception e)
+            {
+                return NotFound(e.Message);
+            }
         }
     }
 }

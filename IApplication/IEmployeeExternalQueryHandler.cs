@@ -6,5 +6,6 @@ namespace IApplication
     public interface IEmployeeExternalQueryHandler
     {
         List<EmployeeDetail> GetAll();
+        EmployeeDetail GetById(int id);
     }
 }

@@ -1,15 +1,4 @@
-﻿//------- Begin Get externals employees -----------//
-
-function getExternalEmployees() {
-    fetch('EmployeeExternal')
-        .then(response => response.json())
-        .then(data => renderTable(data, getBodyTableExternalEmployee()))
-        .catch(error => console.error("Error" + error.message));
-}
-
-//------- End Get externals employees -----------//
-
-
+﻿
 //------- Begin Create employee -----------//
 
 function save() {
@@ -224,3 +213,57 @@ function renderTable(employees, bodyTable) {
 
 }
 //------- End Get employees -----------//
+
+//------- Begin Get externals employees -----------//
+
+function getExternalEmployees() {
+
+    idEmployee = getIdExternalEmployee();
+
+    if (idEmployee)
+        getExternalEmployee();
+    else
+        getExternalEmployeesAll();
+}
+
+function getIdExternalEmployee() {
+    const idExternalEmployee = document.getElementById('idExternalEmployee');
+
+    return idExternalEmployee.value;
+}
+
+
+function getExternalEmployee() {
+    const id = getIdExternalEmployee();
+
+    const route = `EmployeeExternal/${id}/employee`;
+
+    fetch(route)
+        .then(response => response.json())
+        .then(data => renderTable([data], getBodyTableExternalEmployee()))
+        .then(cleanInputExternalIdEmpoyee())
+        .catch(error => alert(`Employee with id ${id} not exist`));
+}
+
+
+function getExternalEmployeesAll() {
+
+    fetch('EmployeeExternal')
+        .then(response => response.json())
+        .then(data => renderTable(data, getBodyTableExternalEmployee()))
+        .catch(error => console.error("Error" + error.message));
+}
+
+
+function cleanInputExternalIdEmpoyee() {
+    const idExternalEmployee = document.getElementById('idExternalEmployee');
+
+    idExternalEmployee.value = '';
+}
+
+
+
+//------- End Get externals employees -----------//
+
+
+

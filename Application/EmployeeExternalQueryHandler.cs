@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Domain;
 using Entities.Constant;
 using Entities.DTO;
@@ -52,5 +54,35 @@ namespace Application
             return employeeDetails;
         }
 
+        public EmployeeDetail GetById(int id)
+        {
+            List<EmployeeExternal> employeeExternals = _employeeExternalService.GetAll();
+
+            var employeeExternal = employeeExternals.FirstOrDefault(employee => employee.Id == id);
+
+            if (employeeExternal is null)
+                throw new Exception($"Employee with id {id} not exist.");
+
+            if (employeeExternal.ContractTypeName == "HourlySalaryEmployee")
+            {
+                var hourlySalaryBase = new Money(employeeExternal.HourlySalary, Currency.USD);
+                var hourlySalaryContract = new HourlySalaryContract(hourlySalaryBase);
+
+                return  new EmployeeDetail(employeeExternal.Id, employeeExternal.Name, string.Empty,
+                    hourlySalaryContract.TypeContract, hourlySalaryContract.Salary,
+                    hourlySalaryContract.AnnualSalary, employeeExternal.RoleName, employeeExternal.RoleDescription);
+
+            }
+
+            if (employeeExternal.ContractTypeName == "MonthlySalaryEmployee")
+            {
+                var salary = new Money(employeeExternal.MonthlySalary, Currency.USD);
+                MonthlySalaryContract monthlySalaryContract = new MonthlySalaryContract(salary);
+
+                return new EmployeeDetail(employeeExternal.Id, employeeExternal.Name, string.Empty, monthlySalaryContract.TypeContract, monthlySalaryContract.Salary, monthlySalaryContract.AnnualSalary, employeeExternal.RoleName, employeeExternal.RoleDescription);
+            }
+
+            return new EmployeeDetail(employeeExternal.Id, employeeExternal.Name, string.Empty, string.Empty, new Money(0m, Currency.USD), new Money(0m, Currency.USD), employeeExternal.RoleName, employeeExternal.RoleDescription);
+        }
     }
 }
