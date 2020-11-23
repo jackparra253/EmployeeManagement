@@ -23,32 +23,26 @@ namespace Application
         {
             List<EmployeeExternal> employeeExternals = _employeeExternalService.GetAll();
 
+            return CreateEmployeesDetails(employeeExternals);
+        }
+
+        private List<EmployeeDetail> CreateEmployeesDetails(List<EmployeeExternal> employeeExternals)
+        {
             List<EmployeeDetail> employeeDetails = new List<EmployeeDetail>();
 
             employeeExternals.ForEach(employeeExternal =>
             {
-                if (employeeExternal.ContractTypeName == "HourlySalaryEmployee")
+                if (IsHourlySalaryEmployee(employeeExternal.ContractTypeName))
                 {
-                    var hourlySalaryBase = new Money(employeeExternal.HourlySalary, Currency.USD);
-                    var hourlySalaryContract = new HourlySalaryContract(hourlySalaryBase);
-
-                    var employeeDetailTypeHourlyContract = new EmployeeDetail(employeeExternal.Id, employeeExternal.Name, string.Empty,
-                        hourlySalaryContract.TypeContract, hourlySalaryContract.Salary,
-                        hourlySalaryContract.AnnualSalary, employeeExternal.RoleName, employeeExternal.RoleDescription);
-
+                    var employeeDetailTypeHourlyContract = CreateHourlySalaryEmployee(employeeExternal);
                     employeeDetails.Add(employeeDetailTypeHourlyContract);
                 }
 
-                if (employeeExternal.ContractTypeName == "MonthlySalaryEmployee")
+                if (IsMonthlySalaryEmployee(employeeExternal.ContractTypeName))
                 {
-                    var salary = new Money(employeeExternal.MonthlySalary, Currency.USD); ;
-                    MonthlySalaryContract monthlySalaryContract = new MonthlySalaryContract(salary);
-
-                    var employee = new EmployeeDetail(employeeExternal.Id, employeeExternal.Name, string.Empty, monthlySalaryContract.TypeContract, monthlySalaryContract.Salary, monthlySalaryContract.AnnualSalary, employeeExternal.RoleName, employeeExternal.RoleDescription);
-
+                    var employee = CreateMonthlySalaryEmployee(employeeExternal);
                     employeeDetails.Add(employee);
                 }
-                
             });
 
             return employeeDetails;
@@ -63,25 +57,45 @@ namespace Application
             if (employeeExternal is null)
                 throw new Exception($"Employee with id {id} not exist.");
 
-            if (employeeExternal.ContractTypeName == "HourlySalaryEmployee")
-            {
-                var hourlySalaryBase = new Money(employeeExternal.HourlySalary, Currency.USD);
-                var hourlySalaryContract = new HourlySalaryContract(hourlySalaryBase);
+            if (IsHourlySalaryEmployee(employeeExternal.ContractTypeName))
+                return CreateHourlySalaryEmployee(employeeExternal);
 
-                return  new EmployeeDetail(employeeExternal.Id, employeeExternal.Name, string.Empty,
-                    hourlySalaryContract.TypeContract, hourlySalaryContract.Salary,
-                    hourlySalaryContract.AnnualSalary, employeeExternal.RoleName, employeeExternal.RoleDescription);
+            if (IsMonthlySalaryEmployee(employeeExternal.ContractTypeName))
+                return CreateMonthlySalaryEmployee(employeeExternal);
 
-            }
+            return CreateEmployeeDetailDefault(employeeExternal);
+        }
 
-            if (employeeExternal.ContractTypeName == "MonthlySalaryEmployee")
-            {
-                var salary = new Money(employeeExternal.MonthlySalary, Currency.USD);
-                MonthlySalaryContract monthlySalaryContract = new MonthlySalaryContract(salary);
+        private bool IsHourlySalaryEmployee(string contractTypeName)
+        {
+            return contractTypeName == "HourlySalaryEmployee";
+        }
 
-                return new EmployeeDetail(employeeExternal.Id, employeeExternal.Name, string.Empty, monthlySalaryContract.TypeContract, monthlySalaryContract.Salary, monthlySalaryContract.AnnualSalary, employeeExternal.RoleName, employeeExternal.RoleDescription);
-            }
+        private bool IsMonthlySalaryEmployee(string contractTypeName)
+        {
+            return contractTypeName == "MonthlySalaryEmployee";
+        }
 
+        private EmployeeDetail CreateHourlySalaryEmployee(EmployeeExternal employeeExternal)
+        {
+            var hourlySalaryBase = new Money(employeeExternal.HourlySalary, Currency.USD);
+            var hourlySalaryContract = new HourlySalaryContract(hourlySalaryBase);
+
+            return new EmployeeDetail(employeeExternal.Id, employeeExternal.Name, string.Empty,
+                hourlySalaryContract.TypeContract, hourlySalaryContract.Salary,
+                hourlySalaryContract.AnnualSalary, employeeExternal.RoleName, employeeExternal.RoleDescription);
+        }
+
+        private EmployeeDetail CreateMonthlySalaryEmployee(EmployeeExternal employeeExternal)
+        {
+            var salary = new Money(employeeExternal.MonthlySalary, Currency.USD);
+            MonthlySalaryContract monthlySalaryContract = new MonthlySalaryContract(salary);
+
+            return new EmployeeDetail(employeeExternal.Id, employeeExternal.Name, string.Empty, monthlySalaryContract.TypeContract, monthlySalaryContract.Salary, monthlySalaryContract.AnnualSalary, employeeExternal.RoleName, employeeExternal.RoleDescription);
+        }
+
+        private EmployeeDetail CreateEmployeeDetailDefault(EmployeeExternal employeeExternal)
+        {
             return new EmployeeDetail(employeeExternal.Id, employeeExternal.Name, string.Empty, string.Empty, new Money(0m, Currency.USD), new Money(0m, Currency.USD), employeeExternal.RoleName, employeeExternal.RoleDescription);
         }
     }
