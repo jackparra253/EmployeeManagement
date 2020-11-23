@@ -1,11 +1,13 @@
-﻿function getExternalEmployees() {
-    const route = 'EmployeeExternal';
+﻿//------- Begin Get externals employees -----------//
 
-    fetch(`${route}`)
+function getExternalEmployees() {
+    fetch('EmployeeExternal')
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => renderTable(data, getBodyTableExternalEmployee()))
         .catch(error => console.error("Error" + error.message));
 }
+
+//------- End Get externals employees -----------//
 
 
 //------- Begin Create employee -----------//
@@ -146,7 +148,7 @@ function getEmployee() {
 
     fetch(route)
             .then(response => response.json())
-            .then(data => renderTable([data]))
+        .then(data => renderTable([data], getBodyTableEmployee()))
             .then(cleanInputIdEmpoyee())
         .catch(error => alert(`Employee with id ${id} not exist`));
 }
@@ -156,7 +158,7 @@ function getEmployeesAll() {
 
     fetch(route)
         .then(response => response.json())
-        .then(data => renderTable(data))
+        .then(data => renderTable(data, getBodyTableEmployee()))
         .catch(error => console.error("Error" + error.message));
 }
 
@@ -166,8 +168,15 @@ function cleanInputIdEmpoyee() {
     idEmployee.value = '';
 }
 
-function renderTable(employees) {
-    const bodyTable = document.getElementById('table-detail-employee');
+function getBodyTableExternalEmployee() {
+    return document.getElementById('table-detail-external-employee');
+}
+
+function getBodyTableEmployee() {
+    return document.getElementById('table-detail-employee');
+}
+
+function renderTable(employees, bodyTable) {
 
     if (bodyTable.rows.length > 0) {
         for (let i = 0; i < employees.length; i++) {
@@ -213,10 +222,5 @@ function renderTable(employees) {
         bodyTable.appendChild(trElement);
     }
 
-
 }
-
-
-
-
 //------- End Get employees -----------//

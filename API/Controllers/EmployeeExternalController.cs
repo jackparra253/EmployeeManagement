@@ -17,7 +17,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public List<EmployeeExternal> GetList()
+        public List<EmployeeDetail> Get()
         {
             return _employeeExternalQueryHandler.GetAll();
         }

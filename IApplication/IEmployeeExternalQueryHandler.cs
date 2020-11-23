@@ -5,6 +5,6 @@ namespace IApplication
 {
     public interface IEmployeeExternalQueryHandler
     {
-        List<EmployeeExternal> GetAll();
+        List<EmployeeDetail> GetAll();
     }
 }
