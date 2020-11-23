@@ -8,8 +8,10 @@
 }
 
 
+//------- Begin Create employee -----------//
+
 function save() {
-    if (isHourlySalary()) 
+    if (isHourlySalary())
         saveEmployeeHourlySalary();
 
     if (isMonthlySalary())
@@ -33,7 +35,7 @@ function getContract() {
 function saveEmployeeHourlySalary() {
     const route = 'Employee/HourlySalary';
     const requestEmployeeHourlySalar = createRequestEmployee();
-    
+
     requestSave(route, requestEmployeeHourlySalar);
 }
 
@@ -46,16 +48,15 @@ function saveEmployeMonthlySalary() {
 
 function requestSave(route, requestEmployee) {
     fetch(route, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(requestEmployee)
-        }).then(response => response.json())
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestEmployee)
+    }).then(response => response.json())
         .then(data => console.log(data))
         .then(cleanForm())
-        .then(getEmployees())
         .catch(error => console.error('unable to add Employee', error));
 }
 
@@ -118,11 +119,104 @@ function cleanForm() {
 }
 
 
+//------- End Create employee -----------//
+
+//------- Begin Get employees -----------//
+
 function getEmployees() {
+    idEmployee = getIdEmployee();
+
+    if (idEmployee)
+        getEmployee();
+    else
+        getEmployeesAll();
+}
+
+
+function getIdEmployee() {
+    const idEmployee = document.getElementById('idEmployee');
+
+    return idEmployee.value;
+}
+
+function getEmployee() {
+    const id = getIdEmployee();
+
+    const route = `Employee/${id}/employee`;
+
+    fetch(route)
+            .then(response => response.json())
+            .then(data => renderTable([data]))
+            .then(cleanInputIdEmpoyee())
+        .catch(error => alert(`Employee with id ${id} not exist`));
+}
+
+function getEmployeesAll() {
     const route = 'Employee';
 
     fetch(route)
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => renderTable(data))
         .catch(error => console.error("Error" + error.message));
 }
+
+function cleanInputIdEmpoyee() {
+    const idEmployee = document.getElementById('idEmployee');
+
+    idEmployee.value = '';
+}
+
+function renderTable(employees) {
+    const bodyTable = document.getElementById('table-detail-employee');
+
+    if (bodyTable.rows.length > 0) {
+        for (let i = 0; i < employees.length; i++) {
+            bodyTable.innerHTML = '';
+        }
+    }
+
+    for (const item of employees) {
+        let trElement = document.createElement('tr');
+
+        let idTdElement = document.createElement('td');
+        idTdElement.innerHTML = item.EmployeeId;
+        trElement.appendChild(idTdElement);
+
+        let nameTdElement = document.createElement('td');
+        nameTdElement.innerHTML = item.Name;
+        trElement.appendChild(nameTdElement);
+
+        let lastNameTdElement = document.createElement('td');
+        lastNameTdElement.innerHTML = item.LastName;
+        trElement.appendChild(lastNameTdElement);
+
+        let typeContractTdElement = document.createElement('td');
+        typeContractTdElement.innerHTML = item.TypeContract;
+        trElement.appendChild(typeContractTdElement);
+
+        let SalaryTdElement = document.createElement('td');
+        SalaryTdElement.innerHTML = ` ${item.Salary.Amount} ${item.Salary.Currency}`;
+        trElement.appendChild(SalaryTdElement);
+
+        let annualSalaryTdElement = document.createElement('td');
+        annualSalaryTdElement.innerHTML = ` ${item.AnnualSalary.Amount} ${item.AnnualSalary.Currency}`;
+        trElement.appendChild(annualSalaryTdElement);
+
+        let roleNameTdElement = document.createElement('td');
+        roleNameTdElement.innerHTML = item.RoleName;
+        trElement.appendChild(roleNameTdElement);
+
+        let roleDescriptrionTdElement = document.createElement('td');
+        roleDescriptrionTdElement.innerHTML = item.RoleDescriptrion;
+        trElement.appendChild(roleDescriptrionTdElement);
+
+        bodyTable.appendChild(trElement);
+    }
+
+
+}
+
+
+
+
+//------- End Get employees -----------//

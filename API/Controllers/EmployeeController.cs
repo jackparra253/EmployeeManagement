@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Entities.DTO;
 using IApplication;
 using Microsoft.AspNetCore.Mvc;
@@ -29,9 +30,17 @@ namespace API.Controllers
 
         [HttpGet]
         [Route("{id}/employee")]
-        public EmployeeDetail Get(int id)
+        public ActionResult<EmployeeDetail> Get(int id)
         {
-            return _employeeQueryHandler.GetById(id);
+            try
+            {
+                return Ok(_employeeQueryHandler.GetById(id));
+            }
+            catch (Exception e)
+            {
+                return NotFound(e.Message);
+            }
+            
         }
 
         [HttpPost]

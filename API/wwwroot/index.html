@@ -21,62 +21,126 @@
     <div class="container-sm">
         <div class="row">
             <div class="col-sm">
-                <h4>Get employees</h4>
+                <h4>External employees</h4>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label for="idExternalEmployee">Id Employee</label>
+                        <input type="number" class="form-control form-control-sm" id="idExternalEmployee" min="1">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-dark btn-sm" onclick="GetExternalEmployees()">Get Employees</button>
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-sm">
+                <h4>External Employees</h4>
+                <table class="table table-sm table-bordered">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Type Contract</th>
+                        <th scope="col">Salary</th>
+                        <th scope="col">Annual Salary</th>
+                        <th scope="col">Role Name</th>
+                        <th scope="col">Role Descriptrion</th>
+                    </tr>
+                    </thead>
+                    <tbody id="table-detail-external-employee">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br />
+
+        <!-- Begin employeee -->
+        <div class="row">
+            <div class="col-sm">
+                <h4>Create employee</h4>
+                <form action="#">
+                    <div class="form-row">
+                        <div class="form-group col-md-2">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control form-control-sm" id="name">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" class="form-control form-control-sm" id="lastName">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="roles">Role</label>
+                            <select id="roles" class="form-control form-control-sm">
+                                <option value="1">Administrator</option>
+                                <option value="2">Contractor</option>
+                                <option value="3">Software developer</option>
+                                <option value="4">Video game developer</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="amount">Amount</label>
+                            <input type="number" type="number" class="form-control form-control-sm" id="amount" min="1">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="contracts">Contract</label>
+                            <select id="contracts" class="form-control form-control-sm">
+                                <option value="1">Hourly Salary</option>
+                                <option value="2">Monthly Salary</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-dark btn-sm" onclick="save()">Save</button>
+                </form>
+            </div>
+        </div>
+        <br />
+        <!-- end -->
+        <!-- table -->
+
+        <div class="row">
+            <div class="col-sm">
+                <h4>Employees</h4>
                 <div class="form-row">
                     <div class="form-group col-md-2">
                         <label for="idEmployee">Id Employee</label>
                         <input type="number" class="form-control form-control-sm" id="idEmployee" min="1">
                     </div>
                 </div>
-                <button type="submit" class="btn btn-dark btn-sm" onclick="save()">Get Employees</button>
+                <button type="submit" class="btn btn-dark btn-sm" onclick="getEmployees()">Get Employees</button>
             </div>
         </div>
-        
+
         <br />
 
-        <!-- Begin employeee -->
-                <div class="row">
-                    <div class="col-sm">
-                        <h4>Create employee</h4>
-                        <form action="#">
-                            <div class="form-row">
-                                <div class="form-group col-md-2">
-                                    <label for="name">Name</label>
-                                    <input type="text" class="form-control form-control-sm" id="name">
-                                </div>
-                                <div class="form-group col-md-2">
-                                    <label for="lastName">Last Name</label>
-                                    <input type="text" class="form-control form-control-sm" id="lastName">
-                                </div>
-                                <div class="form-group col-md-2">
-                                    <label for="roles">Role</label>
-                                    <select id="roles" class="form-control form-control-sm">
-                                        <option value="1">Administrator</option>
-                                        <option value="2">Contractor</option>
-                                        <option value="3">Software developer</option>
-                                        <option value="4">Video game developer</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-2">
-                                    <label for="amount">Amount</label>
-                                    <input type="number" type="number" class="form-control form-control-sm" id="amount" min="1">
-                                </div>
-                                <div class="form-group col-md-2">
-                                    <label for="contracts">Contract</label>
-                                    <select id="contracts" class="form-control form-control-sm">
-                                        <option value="1">Hourly Salary</option>
-                                        <option value="2">Monthly Salary</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-dark btn-sm" onclick="save()">Save</button>
-                        </form>
-                    </div>
-                </div><br>
-                <!-- end -->
-
-
+        <div class="row">
+            <div class="col-sm">
+                <h4>Employee</h4>
+                <table class="table table-sm table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Type Contract</th>
+                            <th scope="col">Salary</th>
+                            <th scope="col">Annual Salary</th>
+                            <th scope="col">Role Name</th>
+                            <th scope="col">Role Descriptrion</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-detail-employee">
+                    </tbody>
+                </table>
             </div>
+        </div>
+        <!-- table-->
+
+
+
+    </div>
 
             <script src="js/site.js" asp-append-version="true"></script>
             <script type="text/javascript">
